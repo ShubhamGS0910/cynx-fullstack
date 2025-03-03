@@ -1,6 +1,6 @@
   import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
   import Navbar from "./components/navbar/Navbar.jsx";
-  import Footer from "./components/Footer.jsx";
+  import Footer from "./components/footer/Footer.jsx";
 import CTAButton from "./components/ctaction/CTAButton.jsx";
 import Home from "./pages/Home.jsx";
 

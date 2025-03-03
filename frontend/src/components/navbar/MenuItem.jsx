@@ -1,108 +1,73 @@
 import { useState } from "react";
+import { ChevronDown, ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import { FaChevronDown } from "react-icons/fa";
 
-const MenuItem = ({ name, path, dropdown, mobile }) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [subMenuOpen, setSubMenuOpen] = useState({});
-
-  // Handle hover for desktop
-  const handleMouseEnter = () => {
-    if (!mobile) setIsOpen(true);
-  };
-
-  const handleMouseLeave = () => {
-    if (!mobile) setIsOpen(false);
-  };
-
-  // Toggle main dropdown (for mobile mode)
-  const toggleDropdown = () => {
-    if (mobile) setIsOpen(!isOpen);
-  };
-
-  // Toggle submenus (nested dropdowns)
-  const toggleSubMenu = (index) => {
-    setSubMenuOpen((prev) => ({
-      ...prev,
-      [index]: !prev[index],
-    }));
-  };
+const MenuItem = ({ title, path, icon: Icon, submenus }) => {
+  const [open, setOpen] = useState(false);
 
   return (
-    <li
-      className={`relative group ${mobile ? "w-full" : "inline-block"}`}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-    >
-      {dropdown ? (
-        <>
-          {/* Main Dropdown Button */}
-          <button
-            onClick={toggleDropdown}
-            className="flex items-center justify-between w-full px-4 py-2 text-gray-900 dark:text-white hover:text-orange-600 dark:hover:text-orange-400 md:cursor-pointer"
-          >
-            {name}
-            <FaChevronDown className={`ml-2 transition-transform ${isOpen ? "rotate-180" : ""}`} />
-          </button>
+    <div className="relative group">
+      <Link
+        to={path || "#"}
+        className="flex items-center gap-2 px-4 py-2 hover:text-orange-500 transition"
+        onClick={(e) => submenus && e.preventDefault()} 
+        onMouseEnter={() => setOpen(true)}
+        onMouseLeave={() => setOpen(false)}
+      >
+        {Icon && <Icon size={18} />}
+        {title}
+        {submenus && <ChevronDown size={14} className="ml-1 transition-transform duration-300 group-hover:rotate-180" />}
+      </Link>
 
-          {/* Dropdown Menu */}
-          <ul
-            className={`absolute left-0 mt-2 bg-white dark:bg-gray-800 shadow-lg rounded-lg overflow-hidden transition-opacity duration-300 z-50 ${
-              isOpen ? "opacity-100 visible" : "opacity-0 invisible"
-            } md:group-hover:opacity-100 md:group-hover:visible md:block md:absolute md:mt-0 md:min-w-[200px]`}
-          >
-            {dropdown.map((item, index) => (
-              <li key={index} className="relative group">
-                {item.children ? (
-                  <>
-                    {/* Parent Dropdown Item with Nested Menu */}
-                    <button
-                      onClick={() => toggleSubMenu(index)}
-                      className="flex items-center justify-between w-full px-4 py-2 text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
-                    >
-                      {item.name}
-                      <FaChevronDown className={`ml-2 transition-transform ${subMenuOpen[index] ? "rotate-180" : ""}`} />
-                    </button>
-
-                    {/* Nested Submenu */}
-                    <ul
-                      className={`absolute left-full top-0 mt-0 bg-white dark:bg-gray-800 shadow-lg rounded-lg min-w-[180px] transition-all duration-300 z-50 
-                        ${subMenuOpen[index] ? "block" : "hidden"} 
-                        md:group-hover:block md:group-hover:opacity-100 md:group-hover:visible`}
-                    >
-                      {item.children.map((subItem, subIndex) => (
-                        <li key={subIndex}>
-                          <Link
-                            to={subItem.path}
-                            className="block px-4 py-2 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
-                          >
-                            {subItem.name}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </>
-                ) : (
-                  <Link
-                    to={item.path}
-                    className="block px-4 py-2 text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
-                  >
-                    {item.name}
-                  </Link>
-                )}
-              </li>
-            ))}
-          </ul>
-        </>
-      ) : (
-        <Link
-          to={path}
-          className="block px-4 py-2 text-gray-900 dark:text-white hover:text-orange-600 dark:hover:text-orange-400"
+      {submenus && open && (
+        <div
+          className="absolute left-0 mt-2 w-48 bg-white dark:bg-gray-800 shadow-lg rounded-md"
+          onMouseEnter={() => setOpen(true)}
+          onMouseLeave={() => setOpen(false)}
         >
-          {name}
-        </Link>
+          {submenus.map((submenu, idx) => (
+            <SubMenuItem key={idx} {...submenu} />
+          ))}
+        </div>
       )}
-    </li>
+    </div>
+  );
+};
+
+const SubMenuItem = ({ title, path, submenus }) => {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <div className="relative group">
+      <Link
+        to={path || "#"}
+        className="flex justify-between px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-700 transition"
+        onClick={(e) => submenus && e.preventDefault()}
+        onMouseEnter={() => setOpen(true)}
+        onMouseLeave={() => setOpen(false)}
+      >
+        {title}
+        {submenus && <ChevronRight size={14} />}
+      </Link>
+
+      {submenus && open && (
+        <div
+          className="absolute left-full top-0 mt-0 w-48 bg-white dark:bg-gray-800 shadow-lg rounded-md"
+          onMouseEnter={() => setOpen(true)}
+          onMouseLeave={() => setOpen(false)}
+        >
+          {submenus.map((submenu, idx) => (
+            <Link
+              key={idx}
+              to={submenu.path}
+              className="block px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-700 transition"
+            >
+              {submenu.title}
+            </Link>
+          ))}
+        </div>
+      )}
+    </div>
   );
 };
 

@@ -1,7 +1,12 @@
 import React from "react";
+import { Router } from "react-router-dom";
+import Navbar from "../components/navbar/Navbar";
+import Footer from "../components/footer/Footer";
 
 const About = () => {
   return (
+    <Router>
+      <Navbar />
     <div className="bg-gray-900 text-white min-h-screen">
       <div className="max-w-6xl mx-auto px-6 py-12">
         {/* Heading Section */}
@@ -85,6 +90,9 @@ const About = () => {
         </div>
       </div>
     </div>
+
+    <Footer />
+    </Router>
   );
 };
 
