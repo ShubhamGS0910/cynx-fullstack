@@ -1,0 +1,18 @@
+# Node.js (Frontend)
+node_modules/
+dist/
+.vite/
+
+# Java (Backend)
+target/
+*.class
+*.log
+*.jar
+*.war
+*.ear
+
+# OS/IDE Specific
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
