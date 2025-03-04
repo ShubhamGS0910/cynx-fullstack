@@ -17,6 +17,12 @@ const Footer = () => {
         <motion.div className="text-xl font-semibold" whileHover={{ scale: 1 }} transition={{ duration: 0.2 }}>
           © {new Date().getFullYear()} CYN-X. All rights reserved.
         </motion.div>
+        <p>© {new Date().getFullYear()} CYN-X. All Rights Reserved.</p>
+        <div className="flex justify-center gap-4 mt-2">
+          <a href="#" className="hover:text-orange-500">Privacy Policy</a>
+          <a href="#" className="hover:text-orange-500">Terms of Service</a>
+          <a href="#" className="hover:text-orange-500">Contact</a>
+        </div>
 
         <div className="flex space-x-4 mt-4 md:mt-0">
           <motion.a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-blue-500 transition-all" whileHover={{ scale: 1.2 }}>
@@ -37,7 +43,9 @@ const Footer = () => {
           {darkMode ? <Sun size={20} /> : <Moon size={20} />}
           <span>{darkMode ? "Light Mode" : "Dark Mode"}</span>
         </button>
+        
       </div>
+      
     </footer>
   );
 };
