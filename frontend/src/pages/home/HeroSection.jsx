@@ -82,7 +82,7 @@ const RotatingText = () => {
 const HeroSection = () => {
   return (
     <section
-      className="w-full min-h-[calc(100vh-80px)] p-0 flex items-center justify-center text-center bg-cover bg-center bg-no-repeat relative"
+      className="w-full  h-100 p-0 flex items-center justify-center text-center bg-cover bg-center bg-no-repeat relative"
       style={{
         backgroundImage: `url('/assets/HomeHS.png')`,
         backgroundSize: "cover",

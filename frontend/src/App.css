@@ -1,0 +1,7 @@
+.neon-glow {
+  text-shadow: 0 0 10px #00ffea, 0 0 20px #00ffea, 0 0 30px #00ffea;
+}
+
+.container {
+  @apply w-full max-w-[1440px] px-4 md:px-8 lg:px-16 mx-auto;
+}

@@ -1,8 +1,13 @@
 import React from "react";
+import Navbar from "../components/navbar/Navbar";
+import Footer from "../components/footer/Footer";
 
 const About = () => {
-  return (
-    <div className="bg-gray-900 text-white min-h-screen">
+  return (<>
+  <Navbar />
+  
+  
+  <div className="bg-gray-900 text-white min-h-screen">
       <div className="max-w-6xl mx-auto px-6 py-12">
         {/* Heading Section */}
         <h1 className="text-4xl md:text-5xl font-bold text-center mb-6">
@@ -85,7 +90,9 @@ const About = () => {
         </div>
       </div>
     </div>
-  );
+  
+  <Footer />
+  </>);
 };
 
 export default About;

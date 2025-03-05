@@ -1,92 +1,57 @@
-import React from "react";
+import Footer from "../components/footer/Footer.jsx";
+import Navbar from "../components/navbar/Navbar.jsx";
+import HeroSection from "./aboutus/HeroSection.jsx";
+import App from "../App.jsx";
 
 const About = () => {
   return (
-    <div className="bg-gray-900 text-white min-h-screen">
-      <div className="max-w-6xl mx-auto px-6 py-12">
-        {/* Heading Section */}
-        <h1 className="text-4xl md:text-5xl font-bold text-center mb-6">
-          About <span className="text-orange-500">CYN-X</span>
-        </h1>
-        <p className="text-center text-lg text-gray-300 mb-10">
-          Innovation | Creativity | Sustainability
-        </p>
-
-        {/* Sections */}
-        <div className="space-y-12">
-          {/* Software Development */}
-          <div className="bg-gray-800 p-6 rounded-lg shadow-lg">
-            <h2 className="text-3xl font-semibold text-orange-400">
-              Software Development
-            </h2>
-            <p className="text-gray-300 mt-2">
-              We specialize in **building high-quality** and **scalable** mobile
-              and web applications.
+    <App>
+      <Navbar />
+      <main className="flex-1 w-full flex flex-col items-center justify-center">
+        <div className="w-full max-w-[1600px]">
+          <section className="text-center bg-gray-900 text-white py-10">
+            <HeroSection />
+          </section>
+          <section className="p-10 text-center">
+            <h2 className="text-3xl font-bold text-orange-500">Who We Are</h2>
+            <p className="mt-2 text-gray-600">
+              CYN-X is a forward-thinking technology company dedicated to building cutting-edge digital solutions.
             </p>
-            <ul className="mt-4 space-y-2 text-gray-400">
-              <li>✅ Mobile App Development (Android & iOS)</li>
-              <li>✅ Web App Development (Full-stack solutions)</li>
-              <li>✅ Custom Software Development</li>
-              <li>✅ UI/UX Design</li>
-            </ul>
-          </div>
-
-          {/* Artistic Creations */}
-          <div className="bg-gray-800 p-6 rounded-lg shadow-lg">
-            <h2 className="text-3xl font-semibold text-orange-400">
-              Artistic Creations
-            </h2>
-            <p className="text-gray-300 mt-2">
-              We craft **handmade and digital sketches** for art lovers
-              worldwide.
-            </p>
-            <ul className="mt-4 space-y-2 text-gray-400">
-              <li>🎨 Custom Portraits & Digital Sketches</li>
-              <li>🎨 Art for Home & Office Décor</li>
-              <li>🎨 Worldwide Shipping</li>
-            </ul>
-          </div>
-
-          {/* Organic Farming */}
-          <div className="bg-gray-800 p-6 rounded-lg shadow-lg">
-            <h2 className="text-3xl font-semibold text-orange-400">
-              Organic Farming
-            </h2>
-            <p className="text-gray-300 mt-2">
-              Our organic farming ensures **chemical-free, sustainable products**.
-            </p>
-            <ul className="mt-4 space-y-2 text-gray-400">
-              <li>🌿 Fresh & Organic Produce</li>
-              <li>🌿 Eco-Friendly Farming Practices</li>
-              <li>🌿 Locally Sourced, Globally Delivered</li>
-            </ul>
-          </div>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-6">
+              <div className="p-4 border rounded">🚀 Mission Statement</div>
+              <div className="p-4 border rounded">💡 Core Values</div>
+              <div className="p-4 border rounded">🌍 Vision for the Future</div>
+            </div>
+          </section>
+          <section className="p-10 bg-gray-100">
+            <h2 className="text-3xl font-bold text-center text-orange-500">What We Do</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-6 text-center">
+              <div className="p-4 border rounded bg-white shadow">Software Development</div>
+              <div className="p-4 border rounded bg-white shadow">Digital Marketing</div>
+              <div className="p-4 border rounded bg-white shadow">AI & Cloud Solutions</div>
+              <div className="p-4 border rounded bg-white shadow">UI/UX & Design</div>
+            </div>
+          </section>
+          <section className="p-10 text-center">
+            <h2 className="text-3xl font-bold text-orange-500">Our Journey</h2>
+            <div className="flex flex-wrap justify-center gap-6 mt-6">
+              <div className="p-4 border rounded bg-gray-100 shadow">2024 - CYN-X Founded</div>
+              <div className="p-4 border rounded bg-gray-100 shadow">2025 - Launched first enterprise software</div>
+              <div className="p-4 border rounded bg-gray-100 shadow">2026 - Expanded to AI solutions</div>
+            </div>
+          </section>
+          <section className="p-10 bg-gray-100 text-center">
+            <h2 className="text-3xl font-bold text-orange-500">Meet Our Team</h2>
+            <div className="flex flex-wrap justify-center gap-6 mt-6">
+              <div className="p-4 border rounded bg-white shadow">🎯 Christol - Founder & CEO</div>
+              <div className="p-4 border rounded bg-white shadow">🌟 Other Team Members</div>
+            </div>
+          </section>
         </div>
-
-        {/* Why Choose Us */}
-        <div className="mt-16">
-          <h2 className="text-3xl font-semibold text-center text-orange-400">
-            Why Choose CYN-X?
-          </h2>
-          <ul className="mt-6 space-y-2 text-center text-gray-300">
-            <li>✔ Innovation-Driven Solutions</li>
-            <li>✔ Quality & Excellence</li>
-            <li>✔ Global Reach</li>
-            <li>✔ Sustainability-Focused</li>
-          </ul>
-        </div>
-
-        {/* Contact Section */}
-        <div className="mt-12 text-center">
-          <h2 className="text-3xl font-semibold text-orange-400">Let's Connect</h2>
-          <p className="text-gray-400 mt-2">📧 Email: your@email.com</p>
-          <p className="text-gray-400">📍 Location: Your Address</p>
-          <p className="text-gray-400">🌐 Website: www.yourwebsite.com</p>
-        </div>
-      </div>
-    </div>
+      </main>
+      <Footer />
+    </App>
   );
 };
-
 
 export default About;

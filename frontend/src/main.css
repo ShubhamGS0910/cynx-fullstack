@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@tailwind utilities;
 
 @keyframes glow {
     0%, 100% { text-shadow: 0px 0px 10px rgba(255, 255, 255, 0.8); }
@@ -9,3 +10,44 @@
     animation: glow 2s infinite alternate;
   }
   
+
+
+@layer utilities {
+  .animate-flicker {
+    animation: flicker 1.5s infinite alternate;
+  }
+  @keyframes flicker {
+    0% { opacity: 1; }
+    50% { opacity: 0.8; }
+    100% { opacity: 1; }
+  }
+
+  .animate-cloudFloat {
+    animation: cloudFloat 10s infinite alternate ease-in-out;
+  }
+  @keyframes cloudFloat {
+    0% { transform: translateY(0px); }
+    100% { transform: translateY(-20px); }
+  }
+
+  .animate-quantumGlow {
+    animation: quantumGlow 2s infinite alternate;
+  }
+  /* @keyframes quantumGlow {
+    0% { box-shadow: 0 0 15px rgba(150, 0, 255, 0.6); }
+    100% { box-shadow: 0 0 35px rgba(150, 0, 255, 1); }
+  } */
+
+  .bg-grid-cyber {
+    background: url("/assets/react.svg") blur-30 repeat;
+    background-size: cover;
+  }
+
+  .bg-glow {
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+  }
+}
+
+.container {
+  @apply w-full max-w-[1440px] px-4 md:px-8 lg:px-16 mx-auto;
+}

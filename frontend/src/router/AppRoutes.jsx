@@ -12,7 +12,6 @@ const AppRoutes = () => {
   return (
     <div className="flex flex-col min-h-screen bg-gray-900 text-white">
       {/* Navbar */}
-      <Navbar />
 
       {/* Routes */}
       <Routes>
@@ -27,7 +26,6 @@ const AppRoutes = () => {
       </Routes>
 
       {/* Footer */}
-      <Footer />
     </div>
   );
 };
