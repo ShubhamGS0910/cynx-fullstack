@@ -1,12 +1,11 @@
 import { Routes, Route } from "react-router-dom";
-import Navbar from "../components/navbar/Navbar.jsx";
-import Footer from "../components/footer/Footer.jsx";
 import Home from "../pages/Home.jsx";
 import About from "../pages/About.jsx";
 import Contact from "../pages/Contact.jsx";
 import Services from "../pages/Services.jsx";
 import Blog from "../pages/Blog.jsx";
 import Industries from "../pages/Industries.jsx";
+import SingleBlogPost from "../pages/blog/SingleBlogPost.jsx";
 
 const AppRoutes = () => {
   return (
@@ -23,6 +22,9 @@ const AppRoutes = () => {
         <Route path="/contact" element={<Contact />} />
         <Route path="/services/software-development" element={<Services />} />
         
+        {/* <Route path="/" element={<BlogList />} /> */}
+        <Route path="/blog/:id" element={<SingleBlogPost />} />
+
       </Routes>
 
       {/* Footer */}

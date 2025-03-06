@@ -25,15 +25,15 @@ const Home = () => {
             <p className="mt-4 text-lg md:text-xl text-gray-300">
               Innovating the future with high-tech solutions.
             </p>
-            <img src={hsBG} alt="Hero Background" className="w-full mt-6" />
+            {/* <img src={hsBG} alt="Hero Background" className="w-full mt-6" /> */}
           </section>
           <FeaturedPS />
           <Badges />
           <Partners />
           <LatestNews />
           <Testimonials />
-          <section className="flex flex-col md:flex-row justify-between items-center bg-gray-100 dark:bg-gray-800 py-20 px-6">
-            <div className="text-center md:text-left max-w-2xl">
+          <section className="flex flex-col md:flex-row justify-center items-center bg-gray-100 dark:bg-gray-800 py-20 px-6">
+            <div className="text-center md:text-left max-w-2xl pr-20">
               <h2 className="text-3xl md:text-4xl font-semibold">
                 Ready to transform your business?
               </h2>
