@@ -1,6 +1,6 @@
 import CTAButton from "../components/ctaction/CTAButton";
 import HeroSection from "./home/HeroSection";
-import hsBG from "../assets/HomeHS.jpg";
+// import hsBG from "../assets/HomeHS.jpg";
 import FeaturedPS from "./home/FeaturedPS";
 import Badges from "./home/Badges";
 import Partners from "./home/Partners";

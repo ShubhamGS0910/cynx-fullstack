@@ -1,3 +1,11 @@
+html {
+  touch-action: manipulation;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  zoom: 1;
+}
+
+
 .neon-glow {
   text-shadow: 0 0 10px #00ffea, 0 0 20px #00ffea, 0 0 30px #00ffea;
 }

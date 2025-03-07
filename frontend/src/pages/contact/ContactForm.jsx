@@ -14,12 +14,16 @@ const schema = yup.object().shape({
   company: yup.string().optional(),
   inquiryType: yup.string().required("Please select an inquiry type"),
   message: yup.string().max(500, "Message is too long").required("Message is required"),
-  file: yup.mixed().test("fileSize", "File too large (max 5MB)", (file) => !file || (file.size <= 5 * 1024 * 1024)),
+  file: yup
+    .mixed()
+    .test("fileSize", "File too large (max 5MB)", (file) => !file || (file.size <= 5 * 1024 * 1024)),
 });
 
 export default function ContactForm() {
   const [submitStatus, setSubmitStatus] = useState("");
   const [captcha, setCaptcha] = useState(null);
+  const [selectedFile, setSelectedFile] = useState("No file chosen"); // ✅ Added state
+
   const {
     register,
     handleSubmit,
@@ -42,19 +46,22 @@ export default function ContactForm() {
       await axios.post("https://your-backend-api.com/contact", formData);
       setSubmitStatus("success");
       reset();
+      setSelectedFile("No file chosen"); // Reset file display
     } catch (error) {
       setSubmitStatus("error");
     }
   };
 
   return (
-    <div className="max-w-full px-20 mx-auto p-8 bg-white dark:bg-gray-700 shadow-xl ">  
-      <h2 className="text-4xl font-extrabold text-center text-gray-900 dark:text-green-400">Let's Connect</h2>
+    <div className="max-w-full px-4 sm:px-8 md:px-20 mx-auto p-6 md:p-8 bg-white dark:bg-gray-700 shadow-xl ">
+      <h2 className="text-3xl md:text-4xl font-extrabold text-center text-gray-900 dark:text-green-400">
+        Let's Connect
+      </h2>
       <p className="text-center text-gray-600 dark:text-white mt-2">We'd love to hear from you!</p>
 
       <form onSubmit={handleSubmit(onSubmit)} className="mt-6 space-y-6">
         {/* Full Name & Email */}
-        <div className="grid grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="relative">
             <input type="text" {...register("fullName")} className="input-field" />
             <label className="input-label">Full Name *</label>
@@ -68,7 +75,7 @@ export default function ContactForm() {
         </div>
 
         {/* Phone & Company */}
-        <div className="grid grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="relative">
             <input type="text" {...register("phone")} className="input-field" />
             <label className="input-label">Phone (Optional)</label>
@@ -82,7 +89,7 @@ export default function ContactForm() {
 
         {/* Inquiry Type */}
         <div className="relative">
-          <select {...register("inquiryType")} className="input-field">
+          <select {...register("inquiryType")} className="input-field dark:bg-gray-900">
             <option value="">Select Inquiry Type</option>
             <option value="general">General Inquiry</option>
             <option value="business">Business Inquiry</option>
@@ -102,11 +109,24 @@ export default function ContactForm() {
         </div>
 
         {/* File Upload */}
-        <div className="relative border-1 p-1">
-         <div className="relative w-80 hover hover:to-blue-800 bg-gray-600 ">
-          <input type="file" {...register("file")} className="w-full pl-10 content-center justify-center " />
+        <div className="relative border px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-800">
+          <label className="flex items-center gap-2 cursor-pointer">
+            <span className="max-w-50 bg-blue-600 hover:bg-blue-700 dark:bg-gray-600 dark:hover:bg-blue-700  text-white px-4 py-2 rounded-md text-sm font-medium">
+              Choose File
+            </span>
+            <input
+              type="file"
+              {...register("file")}
+              className="hidden"
+              onChange={(e) =>
+                setSelectedFile(e.target.files[0] ? e.target.files[0].name : "No file chosen")
+              }
+            />
+            <span className="bg-gray-300 dark:bg-gray-700 text-gray-800 dark:text-gray-300 px-3 py-2 rounded-md text-sm">
+              {selectedFile}
+            </span>
+          </label>
           <p className="text-red-500 text-sm mt-1">{errors.file?.message}</p>
-          </div>
         </div>
 
         {/* reCAPTCHA */}
@@ -123,8 +143,13 @@ export default function ContactForm() {
           {submitStatus === "loading" ? "Submitting..." : "Submit"}
         </motion.button>
 
-        {submitStatus === "success" && <p className="text-green-500 text-center">Message Sent Successfully!</p>}
-        {submitStatus === "error" && <p className="text-red-500 text-center">Error Sending Message. Try Again.</p>}
+        {/* Submission Status */}
+        {submitStatus === "success" && (
+          <p className="text-green-500 text-center">Message Sent Successfully!</p>
+        )}
+        {submitStatus === "error" && (
+          <p className="text-red-500 text-center">Error Sending Message. Try Again.</p>
+        )}
       </form>
     </div>
   );

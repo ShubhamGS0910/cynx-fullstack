@@ -22,14 +22,14 @@ const ChatSupport = () => {
   };
 
   return (
-    <div className="fixed bottom-36 right-6 z-50">
-      {/* Floating Chat Button */}
+    <div className="fixed bottom-5 right-5 z-10">
+      {/* Floating Chat Button with Responsive Icon Size */}
       {!isChatOpen && (
         <button
-          className="bg-blue-600 text-white p-4 rounded-full shadow-lg hover:bg-blue-700 transition"
+          className="bg-blue-600 text-white p-3 sm:p-2 md:p-3 lg:p-3 rounded-full shadow-lg hover:bg-blue-700 transition"
           onClick={() => setIsChatOpen(true)}
         >
-          <FaComments size={24} />
+          <FaComments className="text-xl sm:text-2xl md:text-2xl lg:text-2xl" />
         </button>
       )}
 
@@ -75,23 +75,23 @@ const ChatSupport = () => {
         </div>
       )}
 
-      {/* External Support Links */}
-      <div className="flex flex-col space-y-2 mt-4">
+      {/* External Support Links with Responsive Icons */}
+      <div className="flex flex-col space-y-3 mt-3">
         <a
           href="https://wa.me/917083942199"
           target="_blank"
           rel="noopener noreferrer"
-          className="bg-green-500 text-white p-3 rounded-full shadow-lg hover:bg-green-600 transition"
+          className="bg-green-500 text-white p-3 sm:p-2 md:p-3 lg:p-3 rounded-full shadow-lg hover:bg-green-600 transition"
         >
-          <FaWhatsapp size={24} />
+          <FaWhatsapp className="text-xl sm:text-2xl md:text-2xl lg:text-2xl" />
         </a>
         <a
           href="https://m.me/cynx"
           target="_blank"
           rel="noopener noreferrer"
-          className="bg-blue-500 text-white p-3 rounded-full shadow-lg hover:bg-blue-600 transition"
+          className="bg-blue-500 text-white p-3 sm:p-3 md:p-3 lg:p-3 rounded-full shadow-lg hover:bg-blue-600 transition"
         >
-          <FaFacebookMessenger size={24} />
+          <FaFacebookMessenger className="text-xl sm:text-2xl md:text-2xl lg:text-2xl" />
         </a>
       </div>
     </div>

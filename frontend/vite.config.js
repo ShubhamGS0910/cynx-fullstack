@@ -13,6 +13,9 @@ export default defineConfig({
     react(), 
     tailwindcss(),
   ],
+  server: {
+    historyApiFallback: true, // ✅ Ensures React Router works on page refresh
+  },
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),

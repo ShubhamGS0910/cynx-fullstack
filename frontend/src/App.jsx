@@ -1,8 +1,11 @@
+import DisableZoom from "./styles/DisableZoom";
+
 const App = ({ children }) => {
   return (
-    <div className="w-full min-h-screen flex flex-col bg-amber-50 items-center">
-      <div className="w-full max-w-[1440px] px-4 md:px-8 lg:px-0">
+    <div className="w-full min-h-screen flex flex-col bg-amber-50  overflow-x-hidden">
+      <div className="w-full min-w-[320px] max-w-[1440px] ">
         {children}
+        <DisableZoom /> 
       </div>
     </div>
   );
