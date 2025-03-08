@@ -1,56 +1,45 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Menu, X } from "lucide-react";
-import MenuItem from "./MenuItem";
-import { menuItems } from "../../data/MenuData";
+import DesktopMenu from "./DesktopMenu";
+import MobileMenu from "./MobileMenu";
 
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
 
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) setMobileOpen(false);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
-    <nav className="w-full min-h-[40px] md:min-h-[50px] max-h-[60px] bg-white dark:bg-gray-900 shadow-lg fixed top-0 left-0 right-0 z-50">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-15">
+    <nav className="w-full fixed top-0 left-0 right-0 z-50 bg-white dark:bg-gray-900 shadow-md">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
         {/* Logo */}
         <Link to="/" className="text-2xl font-bold text-orange-500">
-          
           CYN-X
         </Link>
 
         {/* Desktop Menu */}
-        <div className="hidden md:flex space-x-6">
-          {menuItems.map((item, idx) => (
-            <MenuItem key={idx} {...item} />
-          ))}
+        <div className="hidden lg:flex">
+          <DesktopMenu />
         </div>
 
         {/* Mobile Menu Button */}
         <button
-          className="md:hidden text-gray-700 dark:text-white"
-          onClick={() => setMobileOpen(!mobileOpen)}
+          className="lg:hidden text-gray-700 dark:text-white"
+          onClick={() => setMobileOpen(true)}
+          aria-label="Open Menu"
         >
-          {mobileOpen ? <X size={28} /> : <Menu size={28} />}
+          <Menu size={28} />
         </button>
       </div>
 
-      {/* Mobile Menu (Full-Screen for better UX) */}
-      <div
-        className={`fixed top-0 left-0 w-full h-full bg-white dark:bg-gray-900 transform transition-transform duration-300 ease-in-out ${
-          mobileOpen ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"
-        } md:hidden flex flex-col items-center justify-center space-y-6`}
-      >
-        {/* Close Button */}
-        <button
-          className="absolute top-5 right-6 text-gray-700 dark:text-white"
-          onClick={() => setMobileOpen(false)}
-        >
-          <X size={32} />
-        </button>
-
-        {/* Menu Items */}
-        {menuItems.map((item, idx) => (
-          <MenuItem key={idx} {...item} className="text-2xl" />
-        ))}
-      </div>
+      {/* Mobile Sidebar */}
+      {mobileOpen && <MobileMenu closeMenu={() => setMobileOpen(false)} />}
     </nav>
   );
 };
